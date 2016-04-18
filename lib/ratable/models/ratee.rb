@@ -10,7 +10,7 @@ module Ratable
       end
 
       included do
-        has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratings
+        has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
         has_many :raters, through: :ratings
       end
 
