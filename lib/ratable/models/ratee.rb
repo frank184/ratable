@@ -18,7 +18,7 @@ module Ratable
         puts "HEY!"
       end
 
-      def rate(value, comment)
+      def rate
         puts "HEY!"
       end
 

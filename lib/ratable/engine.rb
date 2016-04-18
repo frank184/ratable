@@ -1,3 +1,5 @@
+require 'rails'
+
 module Ratable
   class Engine < ::Rails::Engine
     isolate_namespace Ratable
