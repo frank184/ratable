@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-
-  mount Ratable::Engine => "/ratable"
+  root 'posts#index'
+  resources :posts
 end
