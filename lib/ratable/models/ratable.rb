@@ -3,8 +3,10 @@ module Ratable
     module Ratable
       extend ActiveSupport::Concern
 
-      def acts_as_ratable
-        include Ratable::Models::Ratable
+      module ActiveRecordExtension
+        def acts_as_ratable
+          include Ratable
+        end
       end
 
       included do
