@@ -2,8 +2,8 @@
 class CreateRatableRatings < ActiveRecord::Migration
   def change
     create_table :ratable_ratings do |t|
-      t.integer :model_id
-      t.string :model_type
+      t.references :ratee, polymorphic: true
+      t.references :rater, polymorphic: true
       t.integer :value
       t.text :comment
 

@@ -4,12 +4,12 @@ class Ratable::InstallGenerator < Rails::Generators::Base
   require 'rails/generators/migration'
 
   def self.next_migration_number path
-    unless @prev_migration_nr
-    @prev_migration_nr = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
+    unless @prev_migration
+      @prev_migration = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
     else
-    @prev_migration_nr += 1
+      @prev_migration += 1
     end
-    @prev_migration_nr.to_s
+    @prev_migration.to_s
   end
 
   def create_initializer_file

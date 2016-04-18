@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418163354) do
+ActiveRecord::Schema.define(version: 20160418191311) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "ratable_ratings", force: :cascade do |t|
+    t.integer  "ratee_id",   limit: 4
+    t.string   "ratee_type", limit: 255
+    t.integer  "rater_id",   limit: 4
+    t.string   "rater_type", limit: 255
+    t.integer  "value",      limit: 4
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end

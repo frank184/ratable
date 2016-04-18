@@ -1,3 +1,3 @@
 class Post < ActiveRecord::Base
-  acts_as_ratable
+  acts_as_ratee
 end
