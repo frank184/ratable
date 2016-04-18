@@ -11,15 +11,18 @@ module Ratable
 
       included do
         has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
-        has_many :raters, through: :ratings
+      end
+
+      def raters
+        ratings.collect { |rating| rating.rater }
       end
 
       def rating_average
-        puts "HEY!"
+        puts 'HEY!'
       end
 
       def rate
-        puts "HEY!"
+        puts 'HEY!'
       end
 
     end
