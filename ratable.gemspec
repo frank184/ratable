@@ -7,11 +7,11 @@ require "ratable/version"
 Gem::Specification.new do |s|
   s.name        = "ratable"
   s.version     = Ratable::VERSION
-  s.authors     = ["="]
-  s.email       = ["="]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Ratable."
-  s.description = "TODO: Description of Ratable."
+  s.authors     = ["François Bélanger"]
+  s.email       = ["frank@smartbuildingapps.com"]
+  s.homepage    = "https://github.com/frank184/ratable"
+  s.summary     = "A Ruby on Rails Gem that allows Models to 'has_many' ratings or 'has_one' rating."
+  s.description = "A Ruby on Rails Gem that allows Models to 'has_many' ratings or 'has_one' rating."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
