@@ -2,6 +2,12 @@
 
 A simple gem that provides a framework to build a rating system, JQuery Raty and some default views.
 
+### Todo
+
+1. Load `app/assets` and `vendor/assets` into host application
+2. Build a default rating view
+3. Build a default rating summary view
+
 ### Getting Started
 
 1. Add the gem to your Gemfile `gem 'ratable'`.
