@@ -8,7 +8,7 @@ A simple gem that provides a lightweight framework for building a rating systems
 2. Build a default rating view
 3. Build a default rating summary view
 4. Write the automated tests using Rspec
-5. Gather input and feedback for another iteration
+5. Gather feedback for another iteration
 
 ### Getting Started
 
