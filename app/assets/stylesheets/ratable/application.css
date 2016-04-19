@@ -14,8 +14,3 @@
  *= require_tree ../../../../vendor/assets/stylesheets
  *= require_self
  */
-
-/* I don't work yet... */
- .test {
-   font-size: 15px;
- }

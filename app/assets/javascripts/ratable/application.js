@@ -11,9 +11,5 @@
 // about supported directives.
 //
 //= require_tree .
+//= require jquery
 //= require_tree ../../../../vendor/assets/javascripts
-
-// I don't work yet...
-function Test() {
-  console.log('Hello!')
-}
