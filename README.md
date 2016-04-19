@@ -39,26 +39,31 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `ratee.ratings.by_rater(rater)`: `Ratable::Rating` scope that returns a ratee's ratings for a particular rater.
 
-`rater.ratings.by_rater(ratee)`: `Ratable::Rating` scope that returns a rater's ratings for a particular ratee.
+`rater.ratings.by_ratee(ratee)`: `Ratable::Rating` scope that returns a rater's ratings for a particular ratee.
 
-`ratings.ratees`: Returns all ratees within the scope of the ratings.
+`raters.ratees`: Returns all ratees within the scope of a rater.
 
-`ratings.raters`: Returns all raters within the scope of the ratings.
+`ratee.raters`: Returns all raters within the scope of a ratee.
 
 
 ### Customization
 
 **Views**: To override the default views provided, you must `rails g ratable:views` to create the view structure in your application. Once generated, these views will override the defaults.
 
+<!--
 **Models**: To keep everything as generic as possible, the current source for `ratees` and `raters` goes as follows:
 
 ``` ruby
-def ratees
-  ratings.collect { |rating| rating.ratee }
+module Ratable::Models::Rater
+  def ratees
+    ratings.collect { |rating| rating.ratee }
+  end
 end
 
-def raters
-  ratings.collect { |rating| rating.rater }
+module Ratable::Models::Ratee
+  def raters
+    ratings.collect { |rating| rating.rater }
+  end
 end
 ```
 
@@ -77,13 +82,23 @@ This will allow you to do the following:
 You might want to do this, because the `ratings.ratees` and `ratings.raters` loops through the collection to maintain polymorphism. If you do this for all your ratee models and rater models, you could then go ahead and override these methods as follows:
 
 ``` ruby
-def ratees
-  ratings.books + ratings.articles + ratings.journals
-end
+# config/initializers/ratable.rb
+module Ratable
+  module Models
+    module Ratee
+      def raters
+        ratings.users + ratings.admins
+      end
+    end
 
-def raters
-  ratings.users + ratings.admins
+    module Rater
+      def ratees
+        ratings.books + ratings.articles + ratings.journals
+      end
+    end
+  end
 end
 ```
 
 This will give you extra performance, because it isn't looping through the ratings collection and building an array. Instead this will query for the specified models.
+-->

@@ -3,18 +3,17 @@ module Ratable
     module Ratee
       extend ActiveSupport::Concern
 
-      attr_reader :options
+      attr_reader :has_one
 
       module ActiveRecordExtension
         def acts_as_ratee(options={has_one: false})
-          @options = options
+          @has_one = options[:has_one]
           include Ratee
         end
       end
 
       included do
-        case @options[:has_one]
-        when true
+        if @has_one
           has_one :rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
         else
           has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
@@ -22,12 +21,20 @@ module Ratable
       end
 
       def raters
-        ratings.collect { |rating| rating.rater }
+        if @has_one
+          rating.rater
+        else
+          ratings.collect { |rating| rating.rater }
+        end
       end
 
       def rate(options={})
         options.reject! { |k| k == :ratee }
-        self.ratings.create(options)
+        if @has_one
+          self.rating.create(options)
+        else
+          self.ratings.create(options)
+        end
       end
 
     end
