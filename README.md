@@ -40,3 +40,50 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 `ratee.ratings.by_rater(rater)`: `Ratable::Rating` scope that returns a ratee's ratings for a particular rater.
 
 `rater.ratings.by_rater(ratee)`: `Ratable::Rating` scope that returns a rater's ratings for a particular ratee.
+
+`ratings.ratees`: Returns all ratees within the scope of the ratings.
+
+`ratings.raters`: Returns all raters within the scope of the ratings.
+
+
+### Customization
+
+**Views**: To override the default views provided, you must `rails g ratable:views` to create the view structure in your application. Once generated, these views will override the defaults.
+
+**Models**: To keep everything as generic as possible, the current source for `ratees` and `raters` goes as follows:
+
+``` ruby
+def ratees
+  ratings.collect { |rating| rating.ratee }
+end
+
+def raters
+  ratings.collect { |rating| rating.rater }
+end
+```
+
+You can easily customize your models based off the polymorphic associations. For example, if you know that you have a `User` and `Admin` model, you can add:
+
+`has_many :users, through: :ratings, source: :rater, source_type: 'User'`
+
+`has_many :admins, through: :ratings, source: :rater, source_type: 'Admin'`
+
+This will allow you to do the following:
+
+`ratee.users`
+
+`ratee.admins`
+
+You might want to do this, because the `ratings.ratees` and `ratings.raters` loops through the collection to maintain polymorphism. If you do this for all your ratee models and rater models, you could then go ahead and override these methods as follows:
+
+``` ruby
+def ratees
+  ratings.books + ratings.articles + ratings.journals
+end
+
+def raters
+  ratings.users + ratings.admins
+end
+```
+
+This will give you extra performance, because it isn't looping through the ratings collection and building an array. Instead this will query for the specified models.
