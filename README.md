@@ -7,6 +7,8 @@ A simple gem that provides a framework to build a rating system, JQuery Raty and
 1. Load `app/assets` and `vendor/assets` into host application
 2. Build a default rating view
 3. Build a default rating summary view
+4. Write the automated tests using Rspec
+5. Gather input and feedback for another iteration
 
 ### Getting Started
 
