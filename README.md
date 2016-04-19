@@ -33,9 +33,9 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 ### Methods
 
-`acts_as_ratee`: Makes a model ratable. Accepts the parameter `has_one`, which is both booleans. Defaults to a `has_many` relationship, but can be changed to `has_one`(ex: `acts_as_ratee(has_one: true)`).
+`acts_as_ratee`: Makes a model ratable. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing `acts_as_ratee(has_one: true)`.
 
-`acts_as_rater`: Make a model the rater of a ratable model. Accepts the parameter `has_one`, which is both booleans. Defaults to a `has_many` relationship, but can be changed to `has_one` (ex: `acts_as_rater(has_one: true)`).
+`acts_as_rater`: Make a model the rater of a ratable model. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: `acts_as_rater(has_one: true)`.
 
 `ratee.ratings`: Returns a ratee's associated ratings.
 
@@ -49,9 +49,9 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `rater.ratings.by_ratee(ratee)`: `Ratable::Rating` scope that returns a rater's ratings for a particular ratee.
 
-`rater.ratees`: Returns all ratees within the scope of a rater.
+`rater.ratees`: Returns all ratees for a given rater.
 
-`ratee.raters`: Returns all raters within the scope of a ratee.
+`ratee.raters`: Returns all raters for a given ratee.
 
 
 ### Customization
