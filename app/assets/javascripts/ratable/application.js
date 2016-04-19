@@ -11,3 +11,8 @@
 // about supported directives.
 //
 //= require_tree .
+//= require_tree ../../../../vendor/assets/javascripts
+
+function Test() {
+  console.log('Hello!')
+}
