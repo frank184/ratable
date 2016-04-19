@@ -1,0 +1,9 @@
+//= require jquery
+//= require_tree ../../../vendor/assets/javascripts
+(function($){
+  $.fn.raty.defaults.starHalf = '<%= image_path('star-half.png') %>';
+  $.fn.raty.defaults.starOn = '<%= image_path('star-on.png') %>';
+  $.fn.raty.defaults.starOff = '<%= image_path('star-off.png') %>';
+  $.fn.raty.defaults.cancelOff = '<%= image_path('cancel-off.png') %>';
+  $.fn.raty.defaults.cancelOn = '<%= image_path('cancel-on.png') %>';
+}(jQuery));

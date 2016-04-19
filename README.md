@@ -4,11 +4,8 @@ A simple gem that provides a lightweight framework for building a rating systems
 
 ### Todo
 
-1. Load `app/assets` and `vendor/assets` into host application
-2. Build a default rating view
-3. Build a default rating summary view
-4. Write the automated tests using Rspec
-5. Gather feedback for another iteration
+1. Write the automated tests using Rspec
+2. Gather feedback for another iteration
 
 ### Getting Started
 
@@ -17,6 +14,35 @@ A simple gem that provides a lightweight framework for building a rating systems
 3. Run the views generator `rails g ratable:views` *(optional)*.
 4. Add `acts_as_ratee` to the model to be rated.
 5. Add `acts_as_rater` to the model doing the rating *(optional)*.
+
+As for creating the process and flow, this is left up to the developer.
+
+A good starting point is to utilize the default view and add the following to your JavaScript:
+
+```javascript
+$(function() {
+  $('.rating').each(function() {
+    $this = $(this);
+    $this.raty({
+      score: $this.data('rating'),
+      scoreName: 'star',
+      space: true
+    });
+  });
+});
+```
+
+The default view hints to use HMLT5 data attributes to store the rating value:
+
+```html
+<div class="rating" data-rating="<%= rating.value %>"></div>
+```
+
+And can then be used as follows:
+
+```ruby
+<%= render @book.ratings %>
+```
 
 ### Rating Model
 
@@ -52,61 +78,3 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 `rater.ratees`: Returns all ratees for a given rater.
 
 `ratee.raters`: Returns all raters for a given ratee.
-
-
-### Customization
-
-**Views**: To override the default views provided, you must `rails g ratable:views` to create the view structure in your application. Once generated, these views will override the defaults.
-
-<!--
-**Models**: To keep everything as generic as possible, the current source for `ratees` and `raters` goes as follows:
-
-``` ruby
-module Ratable::Models::Rater
-  def ratees
-    ratings.collect { |rating| rating.ratee }
-  end
-end
-
-module Ratable::Models::Ratee
-  def raters
-    ratings.collect { |rating| rating.rater }
-  end
-end
-```
-
-You can easily customize your models based off the polymorphic associations. For example, if you know that you have a `User` and `Admin` model, you can add:
-
-`has_many :users, through: :ratings, source: :rater, source_type: 'User'`
-
-`has_many :admins, through: :ratings, source: :rater, source_type: 'Admin'`
-
-This will allow you to do the following:
-
-`ratee.users`
-
-`ratee.admins`
-
-You might want to do this, because the `ratings.ratees` and `ratings.raters` loops through the collection to maintain polymorphism. If you do this for all your ratee models and rater models, you could then go ahead and override these methods as follows:
-
-``` ruby
-# config/initializers/ratable.rb
-module Ratable
-  module Models
-    module Ratee
-      def raters
-        ratings.users + ratings.admins
-      end
-    end
-
-    module Rater
-      def ratees
-        ratings.books + ratings.articles + ratings.journals
-      end
-    end
-  end
-end
-```
-
-This will give you extra performance, because it isn't looping through the ratings collection and building an array. Instead this will query for the specified models.
--->
