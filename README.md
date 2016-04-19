@@ -1,6 +1,6 @@
 # Ratable
 
-A simple gem that provides a framework to build a rating system, JQuery Raty and some default views.
+A simple gem that provides a lightweight framework for building a rating systems and includes the JQuery Raty library from https://github.com/wbotelhos/raty.
 
 ### Todo
 
@@ -33,9 +33,9 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 ### Methods
 
-`acts_as_ratee`: Makes a model ratable. Accepts the parameters `has_many` and `has_one`, which are both booleans. Defaults to `has_many`, but can be change to `has_one`: `acts_as_ratee(has_one: true)`
+`acts_as_ratee`: Makes a model ratable. Accepts the parameter `has_one`, which is both booleans. Defaults to a `has_many` relationship, but can be changed to `has_one`(ex: `acts_as_ratee(has_one: true)`).
 
-`acts_as_rater`: Make a model the rater. Accepts the parameters `has_many` and `has_one`, which are both booleans. Defaults to `has_many`, but can be changeed to `has_one`: `acts_as_rater(has_one: true)`
+`acts_as_rater`: Make a model the rater of a ratable model. Accepts the parameter `has_one`, which is both booleans. Defaults to a `has_many` relationship, but can be changed to `has_one` (ex: `acts_as_rater(has_one: true)`).
 
 `ratee.ratings`: Returns a ratee's associated ratings.
 
