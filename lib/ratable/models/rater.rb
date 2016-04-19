@@ -22,9 +22,9 @@ module Ratable
 
       def ratees
         if @has_one
-          rating.rater
+          rating.ratee
         else
-          ratings.collect { |rating| rating.rater }
+          ratings.collect { |rating| rating.ratee }
         end
       end
 
