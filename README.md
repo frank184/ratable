@@ -49,7 +49,7 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `rater.ratings.by_ratee(ratee)`: `Ratable::Rating` scope that returns a rater's ratings for a particular ratee.
 
-`raters.ratees`: Returns all ratees within the scope of a rater.
+`rater.ratees`: Returns all ratees within the scope of a rater.
 
 `ratee.raters`: Returns all raters within the scope of a ratee.
 
