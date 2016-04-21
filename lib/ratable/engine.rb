@@ -5,6 +5,12 @@ module Ratable
     isolate_namespace Ratable
     initializer "ratable.models.ratee" do
       ActiveSupport.on_load(:active_record) do
+        extend Ratable::Models::Ratable::ActiveRecordExtension
+        include Ratable::Models::Ratable::ActiveRecordExtension
+      end
+    end
+    initializer "ratable.models.ratee" do
+      ActiveSupport.on_load(:active_record) do
         extend Ratable::Models::Ratee::ActiveRecordExtension
       end
     end
