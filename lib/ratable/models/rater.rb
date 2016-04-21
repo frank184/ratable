@@ -18,13 +18,14 @@ module Ratable
         else
           has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
         end
+        has_one :rating_summary, class_name: 'Ratable::RatingSummary', as: :rater
       end
 
       def ratees
         if @has_one
           rating.ratee
         else
-          ratings.collect { |rating| rating.ratee }
+          ratings.includes(:ratee).collect { |rating| rating.ratee }
         end
       end
 
