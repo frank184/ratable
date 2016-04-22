@@ -78,3 +78,15 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 `rater.ratees`: Returns all ratees for a given rater.
 
 `ratee.raters`: Returns all raters for a given ratee.
+
+`Article.is_ratable?`: Checks whether a model uses Ratable.
+
+`article.is_ratable?`: Checks whether a model instance uses the Ratable.
+
+`Article.is_rater?`: Checks whether the model uses Ratable Rater.
+
+`article.is_rater?`: Checks whether a model instance uses Ratable Rater.
+
+`Article.is_ratee?`: Checks whether a model uses Ratable Ratee.
+
+`article.is_ratee?`: Checks whether a model instance uses Ratable Ratee.
