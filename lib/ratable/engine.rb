@@ -6,7 +6,7 @@ module Ratable
     initializer "ratable.models.ratee" do
       ActiveSupport.on_load(:active_record) do
         extend Ratable::Models::Ratable::ActiveRecordExtension
-        include Ratable::Models::Ratable::ActiveRecordExtension
+        include Ratable::Models::Ratable::ActiveRecordInclusion
       end
     end
     initializer "ratable.models.ratee" do
