@@ -7,5 +7,8 @@ module Ratable
 
     scope :by_ratee, -> (ratee) { where(ratee: ratee) }
     scope :by_rater, -> (rater) { where(rater: rater) }
+
+    def average
+    end
   end
 end

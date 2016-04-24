@@ -14,6 +14,7 @@ A simple gem that provides a lightweight framework for building a rating systems
 3. Run the views generator `rails g ratable:views` *(optional)*.
 4. Add `acts_as_ratee` to the model to be rated.
 5. Add `acts_as_rater` to the model doing the rating *(optional)*.
+6. Add `//= require ratable` to your application.js file.
 
 As for creating the process and flow, this is left up to the developer.
 
@@ -43,6 +44,8 @@ And can then be used as follows:
 ```ruby
 <%= render @book.ratings %>
 ```
+
+Of course this will vary from one use case to another.
 
 ### Rating Model
 

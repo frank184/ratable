@@ -16,15 +16,12 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '~> 4.2.6'
-  s.add_development_dependency 'mysql2'
-  s.add_development_dependency 'devise'
-  s.add_development_dependency 'jquery-rails'
-
-  s.add_development_dependency 'rspec-rails', '~> 3.0'
-  s.add_development_dependency 'rspec-its', '~> 1.1'
-  s.add_development_dependency 'rspec-collection_matchers', '~> 1.1'
-  s.add_development_dependency('appraisal', '~> 1.0.0')
-  s.add_development_dependency('shoulda-matchers', '~> 2')
-  s.add_development_dependency('factory_girl', '~> 2.6.0')
+  s.add_dependency('rails')
+  s.add_development_dependency('mysql2')
+  s.add_development_dependency('devise')
+  s.add_development_dependency('jquery-rails')
+  s.add_development_dependency('rspec-rails')
+  s.add_development_dependency('shoulda-matchers')
+  s.add_development_dependency('factory_girl_rails')
+  s.test_files = Dir["spec/**/*"]
 end
