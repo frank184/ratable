@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    ratable (0.0.2)
+    ratable (0.0.3)
+      jquery-rails
       rails
 
 GEM
@@ -149,7 +150,6 @@ PLATFORMS
 DEPENDENCIES
   devise
   factory_girl_rails
-  jquery-rails
   mysql2
   ratable!
   rspec-rails
