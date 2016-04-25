@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ratable (0.0.1)
+    ratable (0.0.2)
       rails
 
 GEM

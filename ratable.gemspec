@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['François Bélanger']
   s.email       = ['frank@smartbuildingapps.com']
   s.homepage    = 'https://github.com/frank184/ratable'
-  s.summary     = "A Ruby on Rails Gem that allows Models to 'has_many' ratings or 'has_one' rating."
-  s.description = "A Ruby on Rails Gem that allows Models to 'has_many' ratings or 'has_one' rating."
+  s.summary     = "A simple RoR gem that provides a lightweight framework for building a rating systems and includes the JQuery Raty library from https://github.com/wbotelhos/raty."
+  s.description = "A simple RoR gem that provides a lightweight framework for building a rating systems and includes the JQuery Raty library from https://github.com/wbotelhos/raty."
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
