@@ -7,6 +7,7 @@ module Ratable
 
       module ActiveRecordExtension
         def acts_as_rater(options={has_one: false})
+          throw "To make a model the rater and the ratee use `acts_as_ratee_and_rater`" if acts_like_ratee?
           @has_one = options[:has_one]
           include Rater
         end
@@ -18,7 +19,6 @@ module Ratable
         else
           has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
         end
-        has_one :rating_summary, class_name: 'Ratable::RatingSummary', as: :rater
       end
 
       def ratees

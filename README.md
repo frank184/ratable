@@ -64,15 +64,25 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `acts_as_ratee`: Makes a model ratable. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing `acts_as_ratee(has_one: true)`.
 
-`acts_as_rater`: Make a model the rater of a ratable model. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: `acts_as_rater(has_one: true)`.
+`acts_as_rater`: Make a model the ratee and rater of a ratable model. Accepts the parameter `has_one_ratee` and `has_one_rater`, which are booleans. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: has_one_ratee` or `has_one_rater`.
+
+`acts_as_ratee_and_rater` or `acts_as_rater_and_ratee`: Make a model the a ratee and a rater of a ratable model. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: `acts_as_rater(has_one: true)`.
 
 `ratee.ratings`: Returns a ratee's associated ratings.
 
 `rater.ratings`: Returns a rater's associated ratings.
 
-`ratee.rate(attributes)`: Creates a Rating for the ratee in question.
+`ratee_rater.ratee_ratings`: Returns the ratee associated ratings.
 
-`rater.rate(attributes)`: Creates a Rating for the rater in question.
+`ratee_rater.rater_ratings`: Returns the rater associated ratings.
+
+`ratee.rate(attributes)`: Creates a Rating for the ratee in question and for the rater passed in the parameters.
+
+`rater.rate(attributes)`: Creates a Rating for the rater in question and for the ratee passed in the parameters.
+
+`ratee_rater.ratee_rate(attributes)`: Creates a Rating for the ratee in question and for the ratee passed in the parameters.
+
+`ratee_rater.rater_rate(attributes)`: Creates a Rating for the rater in question and for the ratee passed in the parameters.
 
 `ratee.ratings.by_rater(rater)`: `Ratable::Rating` scope that returns a ratee's ratings for a particular rater.
 
@@ -82,14 +92,14 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `ratee.raters`: Returns all raters for a given ratee.
 
-`Article.is_ratable?`: Checks whether a model uses Ratable.
+`Model.acts_like_ratable?`: Checks whether a model uses Ratable.
 
-`article.is_ratable?`: Checks whether a model instance uses the Ratable.
+`model.acts_like_ratable?`: Checks whether a model instance uses the Ratable.
 
-`Article.is_rater?`: Checks whether the model uses Ratable Rater.
+`Model.acts_like_rater?`: Checks whether the model uses Ratable Rater.
 
-`article.is_rater?`: Checks whether a model instance uses Ratable Rater.
+`model.acts_like_rater?`: Checks whether a model instance uses Ratable Rater.
 
-`Article.is_ratee?`: Checks whether a model uses Ratable Ratee.
+`Model.acts_like_ratee?`: Checks whether a model uses Ratable Ratee.
 
-`article.is_ratee?`: Checks whether a model instance uses Ratable Ratee.
+`mode..acts_like_ratee?`: Checks whether a model instance uses Ratable Ratee.
