@@ -64,9 +64,9 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 
 `acts_as_ratee`: Makes a model ratable. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing `acts_as_ratee(has_one: true)`.
 
-`acts_as_rater`: Makes a model the ratee and rater of a ratable model. Accepts the parameter `has_one_ratee` and `has_one_rater`, which are booleans. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: has_one_ratee` or `has_one_rater`.
+`acts_as_rater`: Makes a model the rater of a ratable model. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: `acts_as_rater(has_one: true)`.
 
-`acts_as_ratee_and_rater` or `acts_as_rater_and_ratee`: Makes a model the a ratee and a rater of a ratable model. Accepts the parameter `has_one`, which is a boolean. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: `acts_as_rater(has_one: true)`.
+`acts_as_ratee_and_rater` or `acts_as_rater_and_ratee`: Makes a model a ratee and rater of ratable models. Accepts the parameters `has_one_ratee` and `has_one_rater`, which are booleans. Defaults to a `has_many` relationship, but can be changed to `has_one` by passing: has_one_ratee` or `has_one_rater`.
 
 `ratee.ratings`: Returns a ratee's associated ratings.
 
