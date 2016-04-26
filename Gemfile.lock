@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ratable (0.0.3)
+    ratable (0.0.4)
       jquery-rails
       rails
 
