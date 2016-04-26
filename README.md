@@ -4,8 +4,9 @@ A simple gem that provides a lightweight framework for building a rating systems
 
 ### Todo
 
-1. Write the automated tests using Rspec
-2. Gather feedback for another iteration
+1. Find a way to remove `acts_as_ratee_and_rater`
+2. Write the automated tests using Rspec
+3. Gather feedback for another iteration
 
 ### Getting Started
 
@@ -15,6 +16,7 @@ A simple gem that provides a lightweight framework for building a rating systems
 4. Add `acts_as_ratee` to the model to be rated.
 5. Add `acts_as_rater` to the model doing the rating *(optional)*.
 6. Add `//= require ratable` to your application.js file.
+6. Add `*= require ratable` to your application.css file.
 
 As for creating the process and flow, this is left up to the developer.
 

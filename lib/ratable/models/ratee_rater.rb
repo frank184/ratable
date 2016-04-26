@@ -2,7 +2,6 @@ module Ratable
   module Models
     module RateeRater
       extend ActiveSupport::Concern
-      extend Ratable::ActiveRecordExtension
 
       attr_reader :has_one_ratee, :has_one_rater
 
