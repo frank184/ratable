@@ -23,12 +23,28 @@ module Ratable
         if @has_one_ratee
           has_one :ratee_rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
         else
-          has_many :ratee_ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
+          has_many :ratee_ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
         end
         if @has_one_rater
           has_one :rater_rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
         else
-          has_many :rater_ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_many :rater_ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+        end
+      end
+
+      def ratee_rating_average
+        if @has_one_ratee
+          ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
+        else
+          ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
+        end
+      end
+
+      def rater_rating_average
+        if @has_one_rater
+          ::Ratable::RatingAverage.new(ratings: rater_rating, rater: self)
+        else
+          ::Ratable::RatingAverage.new(ratings: rater_ratings, rater: self)
         end
       end
 

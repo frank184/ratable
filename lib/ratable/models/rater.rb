@@ -17,7 +17,15 @@ module Ratable
         if @has_one
           has_one :rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
         else
-          has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_many :ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+        end
+      end
+
+      def rating_average
+        if @has_one
+          ::Ratable::RatingAverage.new(ratings: rating, rater: self)
+        else
+          ::Ratable::RatingAverage.new(ratings: ratings, rater: self)
         end
       end
 
