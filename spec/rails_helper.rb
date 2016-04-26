@@ -1,14 +1,25 @@
-require 'rails/all'
 require 'spec_helper'
+require 'rails/all'
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'factory_girl_rails'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
+
 # require File.expand_path('../../config/environment', __FILE__)
+
+# Add this to load your dummy app's environment file. This file will require
+# the application.rb file in the dummy directory, and initialise the dummy app.
+# Very simple, now you have your dummy application in memory for your specs.
+require File.expand_path("../dummy/config/environment", __FILE__)
+
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
+# require 'spec_helper'
+# require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

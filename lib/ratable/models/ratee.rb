@@ -7,6 +7,7 @@ module Ratable
 
       module ActiveRecordExtension
         def acts_as_ratee(options={has_one: false})
+          raise "To make a model the rater and the ratee use `acts_as_ratee_and_rater`" if acts_like_rater?
           @has_one = options[:has_one]
           include Ratee
         end
@@ -16,7 +17,15 @@ module Ratable
         if @has_one
           has_one :rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
         else
-          has_many :ratings, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
+          has_many :ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
+        end
+      end
+
+      def rating_average
+        if @has_one
+          ::Ratable::RatingAverage.new(ratings: rating, ratee: self)
+        else
+          ::Ratable::RatingAverage.new(ratings: ratings, ratee: self)
         end
       end
 
@@ -24,7 +33,7 @@ module Ratable
         if @has_one
           rating.rater
         else
-          ratings.collect { |rating| rating.rater }
+          ratings.includes(:rater).collect { |rating| rating.rater }
         end
       end
 
