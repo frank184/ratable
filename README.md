@@ -27,6 +27,7 @@ $(function() {
   $('.rating').each(function() {
     $this = $(this);
     $this.raty({
+      readOnly: true,
       score: $this.data('rating'),
       scoreName: 'star',
       space: true
