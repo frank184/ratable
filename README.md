@@ -14,8 +14,9 @@ A simple gem that provides a lightweight framework for building a rating systems
 3. Run the views generator `rails g ratable:views` *(recommended)*.
 4. Add `acts_as_ratee` to the model to be rated.
 5. Add `acts_as_rater` to the model doing the rating *(optional)*.
-6. Add `//= require ratable` to your application.js file.
-6. Add `*= require ratable` to your application.css file.
+5. Or `acts_as_ratable` to do both *(optional)*.
+6. Add `//= require ratable` to your application.js file (fixes JQuery.Raty images, asset pipeline, and includes JQuery.Raty javascript).
+6. Add `*= require ratable` to your application.css file (includes JQuery.Raty css).
 
 As for creating the process and flow, this is left up to the developer.
 
@@ -85,6 +86,12 @@ The only required attributes for a `Ratable::Rating` are `ratee` and `value`.
 `ratable.ratee_rate(attributes)`: Creates a Rating for the ratee in question and for the rater passed in the parameters.
 
 `ratable.rater_rate(attributes)`: Creates a Rating for the rater in question and for the ratee passed in the parameters.
+
+`ratable.rate(attributes={rater: rater, value: value})`: Creates a Rating for the ratee in question and for the rater passed in the parameters.
+
+`ratable.rate(attributes={ratee: ratee, value: value})`: Creates a Rating for the rater in question and for the ratee passed in the parameters.
+
+`ratable.rate(attributes={rater: rater, ratee: ratee, value: value})`: Will not work!
 
 `ratee.ratings.by_rater(rater)`: `Ratable::Rating` scope that returns a ratee's ratings for a particular rater.
 
