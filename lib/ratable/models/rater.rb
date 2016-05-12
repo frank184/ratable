@@ -7,9 +7,19 @@ module Ratable
 
       module ActiveRecordExtension
         def acts_as_rater(options={has_one: false})
-          raise "To make a model the rater and the ratee use `acts_as_ratee_and_rater`" if acts_like_ratee?
+          raise "To make a model the rater and the ratee use `acts_as_ratable`" if acts_like_ratee?
           @has_one = options[:has_one]
           include Rater
+        end
+
+        def acts_like_rater?
+          ancestors.include?(Rater)
+        end
+      end
+
+      module ActiveRecordInclusion
+        def acts_like_rater?
+          self.class.ancestors.include?(Rater)
         end
       end
 
@@ -40,9 +50,9 @@ module Ratable
       def rate(options={})
         options.reject! { |k| k == :rater }
         if @has_one
-          self.rating.create(options)
+          rating.create(options)
         else
-          self.ratings.create(options)
+          ratings.create(options)
         end
       end
 
