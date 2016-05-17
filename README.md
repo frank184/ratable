@@ -2,6 +2,8 @@
 
 A simple gem that provides a lightweight framework for building a rating systems and includes the JQuery Raty library from https://github.com/wbotelhos/raty.
 
+Example: https://rocky-wildwood-34475.herokuapp.com/
+
 ### Todo
 
 2. Write the automated tests using Rspec
