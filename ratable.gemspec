@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.post_install_message = %{Feel free to contribute! https://www.github.com/frank184/ratable}
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = Dir['{app,config,db,lib,vendor}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency('rails')
   s.add_dependency('jquery-rails')
