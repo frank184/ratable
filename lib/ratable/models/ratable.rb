@@ -24,19 +24,19 @@ module Ratable
 
       included do
         if @has_one_ratee
-          has_one :ratee_rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
+          has_one :ratee_rating, class_name: Ratable::Rating, dependent: :destroy, as: :ratee
         else
-          has_many :ratee_ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :ratee
+          has_many :ratee_ratings, -> { order(updated_at: :desc) }, class_name: Ratable::Rating, dependent: :destroy, as: :ratee
         end
         if @has_one_rater
-          has_one :rater_rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_one :rater_rating, class_name: Ratable::Rating, dependent: :destroy, as: :rater
         else
-          has_many :rater_ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_many :rater_ratings, -> { order(updated_at: :desc) }, class_name: Ratable::Rating, dependent: :destroy, as: :rater
         end
       end
 
       def ratee_rating_average
-        if @has_one_ratee
+        if ratee_rating.present?
           ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
         else
           ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
@@ -44,7 +44,7 @@ module Ratable
       end
 
       def rater_rating_average
-        if @has_one_rater
+        if rateR_rating.present?
           ::Ratable::RatingAverage.new(ratings: rater_rating, rater: self)
         else
           ::Ratable::RatingAverage.new(ratings: rater_ratings, rater: self)
@@ -52,7 +52,7 @@ module Ratable
       end
 
       def ratees
-        if @has_one_ratee
+        if rater_rating.present?
           rater_rating.ratee
         else
           rater_rating.includes(:ratee).collect { |rating| rating.ratee }
@@ -60,7 +60,7 @@ module Ratable
       end
 
       def raters
-        if @has_one_rater
+        if ratee_rating.present?
           ratee_rating.rater
         else
           ratee_ratings.includes(:rater).collect { |rating| rating.rater }
@@ -69,7 +69,7 @@ module Ratable
 
       def ratee_rate(options={})
         options.reject! { |k| k == :ratee }
-        if @has_one_ratee
+        if ratee_rating.present?
           ratee_rating.create(options)
         else
           ratee_rating.create(options)
@@ -78,7 +78,7 @@ module Ratable
 
       def rater_rate(options)
         options.reject! { |k| k == :rater }
-        if @has_one_rater
+        if rater_rating.present?
           rater_rating.create(options)
         else
           rater_ratings.create(options)
@@ -86,10 +86,10 @@ module Ratable
       end
 
       def rate(options)
-        if options[:rater]
-          ratee_rate(options)
-        elsif options[:ratee]
+        if options[:ratee]
           rater_rate(options)
+        else
+          ratee_rate(options)
         end
       end
     end

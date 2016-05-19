@@ -32,7 +32,7 @@ module Ratable
       end
 
       def rating_average
-        if @has_one
+        if rating.present?
           ::Ratable::RatingAverage.new(ratings: rating, rater: self)
         else
           ::Ratable::RatingAverage.new(ratings: ratings, rater: self)
@@ -40,7 +40,7 @@ module Ratable
       end
 
       def ratees
-        if @has_one
+        if rating.present?
           rating.ratee
         else
           ratings.includes(:ratee).collect { |rating| rating.ratee }
@@ -49,8 +49,8 @@ module Ratable
 
       def rate(options={})
         options.reject! { |k| k == :rater }
-        if @has_one
-          rating.create(options)
+        if rating.present?
+          create_rating(options)
         else
           ratings.create(options)
         end
