@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  acts_as_ratee_and_rater
+  # acts_as_ratee_and_rater
+  acts_as_ratable # omg that was so obvious
 end

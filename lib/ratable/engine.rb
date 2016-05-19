@@ -12,16 +12,13 @@ module Ratable
     initializer "ratable.models.ratee" do
       ActiveSupport.on_load(:active_record) do
         extend Ratable::Models::Ratee::ActiveRecordExtension
+        include Ratable::Models::Ratee::ActiveRecordInclusion
       end
     end
     initializer "ratable.models.rater" do
       ActiveSupport.on_load(:active_record) do
         extend Ratable::Models::Rater::ActiveRecordExtension
-      end
-    end
-    initializer "ratable.models.ratee_rater" do
-      ActiveSupport.on_load(:active_record) do
-        extend Ratable::Models::RateeRater::ActiveRecordExtension
+        include Ratable::Models::Rater::ActiveRecordInclusion
       end
     end
     config.generators do |g|
