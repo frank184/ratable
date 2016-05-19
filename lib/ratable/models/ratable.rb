@@ -36,7 +36,7 @@ module Ratable
       end
 
       def ratee_rating_average
-        if ratee_rating.present?
+        if defined?(ratee_rating)
           ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
         else
           ::Ratable::RatingAverage.new(ratings: ratee_rating, ratee: self)
@@ -44,7 +44,7 @@ module Ratable
       end
 
       def rater_rating_average
-        if rateR_rating.present?
+        if defined?(rater_rating)
           ::Ratable::RatingAverage.new(ratings: rater_rating, rater: self)
         else
           ::Ratable::RatingAverage.new(ratings: rater_ratings, rater: self)
@@ -52,7 +52,7 @@ module Ratable
       end
 
       def ratees
-        if rater_rating.present?
+        if defined?(rater_rating)
           rater_rating.ratee
         else
           rater_rating.includes(:ratee).collect { |rating| rating.ratee }
@@ -60,16 +60,16 @@ module Ratable
       end
 
       def raters
-        if ratee_rating.present?
+        if defined?(ratee_rating)
           ratee_rating.rater
         else
           ratee_ratings.includes(:rater).collect { |rating| rating.rater }
         end
       end
 
-      def ratee_rate(options={})
+      def ratee_rate(options)
         options.reject! { |k| k == :ratee }
-        if ratee_rating.present?
+        if defined?(ratee_rating)
           ratee_rating.create(options)
         else
           ratee_rating.create(options)
@@ -78,7 +78,7 @@ module Ratable
 
       def rater_rate(options)
         options.reject! { |k| k == :rater }
-        if rater_rating.present?
+        if defined?(rater_rating)
           rater_rating.create(options)
         else
           rater_ratings.create(options)

@@ -12,6 +12,7 @@ https://rocky-wildwood-34475.herokuapp.com/
 2. Change the spec/dummy to https://github.com/frank184/ratable_example
 3. Relevant integration testing (i.e adding votes, averages)
 3. Gather feedback for another iteration
+4. Add the ability to opt out of self rating
 
 ### Getting Started
 
