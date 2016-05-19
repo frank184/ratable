@@ -25,9 +25,9 @@ module Ratable
 
       included do
         if @has_one
-          has_one :rating, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_one :rating, class_name: ::Ratable::Rating, dependent: :destroy, as: :rater
         else
-          has_many :ratings, -> { order(updated_at: :desc) }, class_name: 'Ratable::Rating', dependent: :destroy, as: :rater
+          has_many :ratings, -> { order(updated_at: :desc) }, class_name: ::Ratable::Rating, dependent: :destroy, as: :rater
         end
       end
 

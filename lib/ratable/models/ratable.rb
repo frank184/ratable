@@ -24,14 +24,14 @@ module Ratable
 
       included do
         if @has_one_ratee
-          has_one :ratee_rating, class_name: Ratable::Rating, dependent: :destroy, as: :ratee
+          has_one :ratee_rating, class_name: ::Ratable::Rating, dependent: :destroy, as: :ratee
         else
-          has_many :ratee_ratings, -> { order(updated_at: :desc) }, class_name: Ratable::Rating, dependent: :destroy, as: :ratee
+          has_many :ratee_ratings, -> { order(updated_at: :desc) }, class_name: ::Ratable::Rating, dependent: :destroy, as: :ratee
         end
         if @has_one_rater
-          has_one :rater_rating, class_name: Ratable::Rating, dependent: :destroy, as: :rater
+          has_one :rater_rating, class_name: ::Ratable::Rating, dependent: :destroy, as: :rater
         else
-          has_many :rater_ratings, -> { order(updated_at: :desc) }, class_name: Ratable::Rating, dependent: :destroy, as: :rater
+          has_many :rater_ratings, -> { order(updated_at: :desc) }, class_name: ::Ratable::Rating, dependent: :destroy, as: :rater
         end
       end
 
