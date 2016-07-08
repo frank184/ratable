@@ -13,7 +13,8 @@ module Ratable
         end
 
         def acts_like_ratee?
-          ancestors.include?(Ratee)
+          klasses = ancestors
+          klasses.include?(Ratee) || klasses.include?(Ratable)
         end
       end
 
